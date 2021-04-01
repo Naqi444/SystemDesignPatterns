@@ -1,0 +1,24 @@
+package decorator;
+
+/**
+ * @author Syed Naqi Hussain
+ * @version 1.0
+ * @date 3/30/2021 5:09 PM
+ */
+public class CompressedCloudStream implements Stream{
+    private Stream stream;
+
+    public CompressedCloudStream(Stream stream) {
+        this.stream = stream;
+    }
+
+    @Override
+    public void write(String data) {
+        var compressed = compress(data);
+        stream.write(compressed);
+    }
+
+    private String compress(String data){
+        return data.substring(0,5);
+    }
+}
